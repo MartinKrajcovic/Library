@@ -22,7 +22,6 @@ public class ImageDownloader implements Downloader<BufferedImage> {
 		try {
 			HttpURLConnection con = (HttpURLConnection) address.openConnection();
 			con.connect();
-			// dopisat lepsi algoritmus ziskania skutocnej cesty suboru...
 			file = new File(fileName.substring(fileName.lastIndexOf('/') + 1));
 			iStream = con.getInputStream();
 			oStream = new FileOutputStream(file);
