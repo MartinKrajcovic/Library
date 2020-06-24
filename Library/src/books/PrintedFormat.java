@@ -15,5 +15,4 @@ public enum PrintedFormat {
 	_15x23cm,
 	_21x29cm,
 	_25x30cm
-	
 }

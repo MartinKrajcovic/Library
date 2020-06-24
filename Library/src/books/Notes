@@ -1,7 +1,3 @@
-  - PrintedBook ISBN
-  
-  - Book verzia?
-  
   - Preverit triedu PrintedBook, ci ma v poriadku metodu na stahovanie
   		-> pripadne zvazit akym sposobom zefektivnit tuto metodu
   		-> vlakno?
