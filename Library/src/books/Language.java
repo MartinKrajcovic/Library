@@ -4,6 +4,7 @@ package books;
  */
 public enum Language {
 
+	Undefined,
 	Slovenský,
 	Český,
 	English,
@@ -11,6 +12,6 @@ public enum Language {
 	Español,
 	Français,
 	Pусский,
-	Undefined
+	
 	
 }
