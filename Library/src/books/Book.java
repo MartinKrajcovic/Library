@@ -13,7 +13,8 @@ public abstract class Book {
 	private double price;
 	private int pages;
 	private int chapters;
-	private int published;	
+	private int published;
+	private int version;
 	
 	private String mainHero;
 	private String plot;
@@ -97,6 +98,15 @@ public abstract class Book {
 	
 	public int getPublished() {
 		return this.published;
+	}
+	
+	public void setVersion(int version) {
+		if (version > 0)
+			this.version = version;
+	}
+	
+	public int getVersion() {
+		return version;
 	}
 	
 	public void setMainHero(String mainHero) {
