@@ -14,11 +14,13 @@ public class PrintedBook extends Book {
 	private Binding binding;
 	private PrintedFormat format;
 	private BufferedImage image;
+	private String ISBN;
 	
 	// initialization block
 	{
 		binding = Binding.Undefined;
 		format = PrintedFormat.Undefined;
+		ISBN = "Undefined";
 		try {
 			image = ImageIO.read(new File("src/images/no_book.jpg"));
 		} catch (IOException e) {
@@ -52,6 +54,7 @@ public class PrintedBook extends Book {
 		return this.format;
 	}
 	
+	// nacitanie obrazka zo suboru
 	public void loadImage(File imagePath) {
 		try {
 			image = ImageIO.read(imagePath);
@@ -60,6 +63,7 @@ public class PrintedBook extends Book {
 		}
 	}
 	
+	// nacitanie obrazku z internetovej adresy
 	public void loadImage(URL imagePath) {
 		BufferedImage image = new ImageDownloader().download(imagePath);
 		if (image != null)
@@ -70,6 +74,14 @@ public class PrintedBook extends Book {
 		return this.image;
 	}
 	
+	public void setISBN(String ISBN) {
+		if (!ISBN.isEmpty())
+			this.ISBN = ISBN;
+	}
+	
+	public String getISBN() {
+		return ISBN;
+	}
 	
 	@Override
 	public String toString() {
