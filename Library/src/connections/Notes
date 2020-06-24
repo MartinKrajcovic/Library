@@ -1,0 +1,12 @@
+ - Definovat pole stringov s platnymi priponami obrazkovych suborov.
+ 	-> Pouzije sa to v druhom kroku (metoda download)
+ 	
+ 	
+ - Pozriet sa na triedu ImageDownload a dopisat funkciu na ziskanie cesty k suboru.
+ 	-> Ked dostanem url adresu musim ziskat cestu k suboru na internete
+ 	-> Ked uz mam cestu, na to aby som ziskal nazov suboru, potrebujem ziskat znaky za poslednym lomytkom
+ 	-> Treba overit, ci ma zmysel dalej stahovat podla pripony suboru, ci je to skutocne obrazok
+ 
+ 
+ - Prepisat metodu download() tak, aby pouzivala try-with-resources
+ 	
