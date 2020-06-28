@@ -63,19 +63,16 @@ public class PrintedBook extends Book {
 		}
 	}
 	
-	// nacitanie obrazku z internetovej adresy
-	public void loadImage(URL imagePath) {
-		BufferedImage image = new ImageDownloader().download(imagePath);
-		if (image != null)
-			this.image = image;
-	}
+	// loadImage(URL imageAddress) bola vymazana a nahradena triedou
+	// ImageDownloader, ktora zabezpecuje stiahnutie obrazku z internetu
+	// a vratenie adresy ulozeneho obrazku.
 	
 	public BufferedImage getImage() {
 		return this.image;
 	}
 	
 	public void setISBN(String ISBN) {
-		if (!ISBN.isEmpty())
+		if (!ISBN.trim().isEmpty())
 			this.ISBN = ISBN;
 	}
 	

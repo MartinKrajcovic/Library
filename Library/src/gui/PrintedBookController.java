@@ -12,6 +12,7 @@ import books.Binding;
 import books.Language;
 import books.PrintedBook;
 import books.PrintedFormat;
+import connections.ImageDownloader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -118,22 +119,24 @@ public class PrintedBookController implements Initializable {
 		myBook.setPrice(parseDouble(priceField.getText().trim()));
 		myBook.setMainHero(mainHeroField.getText());
 		myBook.loadPlot(plotArea.getText());	
+																		 																		 
+		// zobrazenie textovej reprezentacie objektu							 
+		plotArea.setText(myBook.toString());							
 		
 		String location = imageLocationField.getText().trim(); 					 
 		Thread t = new Thread(() -> {	// tuto zvazit nejaky wrapper lambda     
 			try {															     
-				URL url = new URL(location);									 
-				myBook.loadImage(url);											 
+				ImageDownloader downloader = new ImageDownloader(location);
+				myBook.loadImage(downloader.download());
 			} catch (MalformedURLException urlE) {								 
 				myBook.loadImage(new File(location));							 
-			}																	 
+			} catch (IOException e) {
+				// keby sa nepodarilo nacitanie zo suboru
+			}
 			//konvertovanie Image to javafxImage								 
 			bookImage.setImage(SwingFXUtils.toFXImage(myBook.getImage(), null)); 
 		});																		 
-		t.start();																 
-																				 
-		// zobrazenie textovej reprezentacie objektu							 
-		plotArea.setText(myBook.toString());									 
+		t.start();
 	}																			 
 	
 	@FXML

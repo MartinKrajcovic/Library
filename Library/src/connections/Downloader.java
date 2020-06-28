@@ -1,9 +1,9 @@
 package connections;
 
-import java.net.URL;
+import java.io.IOException;
 
 public interface Downloader<T> {
 
-	public T download(URL address);
+	public T download() throws IOException;
 	
 }

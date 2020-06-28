@@ -53,7 +53,7 @@ public abstract class Book {
 	}
 	
 	public void setPublisher(String publisher) {
-		if (!publisher.isEmpty())
+		if (!publisher.trim().isEmpty())
 			this.publisher = publisher;
 	}
 	
@@ -110,7 +110,7 @@ public abstract class Book {
 	}
 	
 	public void setMainHero(String mainHero) {
-		if (!mainHero.isEmpty())
+		if (!mainHero.trim().isEmpty())
 			this.mainHero = mainHero;
 	}
 	
@@ -119,7 +119,7 @@ public abstract class Book {
 	}
 	
 	public void loadPlot(String plot) {
-		if (!plot.isEmpty())
+		if (!plot.trim().isEmpty())
 			this.plot = plot;
 	}
 
