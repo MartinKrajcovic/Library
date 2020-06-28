@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import books.Language;
-
 /**
  * Tato trieda bude zabezpecovat stiahnutie obrazku z internetu
  * a vrati nam nazov a umiestnenie obrazku v podobe objektu File
