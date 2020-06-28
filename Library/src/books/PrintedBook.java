@@ -3,11 +3,8 @@ package books;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
-
-import connections.ImageDownloader;
 
 public class PrintedBook extends Book {
 	
@@ -59,13 +56,15 @@ public class PrintedBook extends Book {
 		try {
 			image = ImageIO.read(imagePath);
 		} catch (IOException e) {
-			System.err.println("no_book.jpg image problem!");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
 	// loadImage(URL imageAddress) bola vymazana a nahradena triedou
 	// ImageDownloader, ktora zabezpecuje stiahnutie obrazku z internetu
-	// a vratenie adresy ulozeneho obrazku.
+	// a vratenie adresy ulozeneho obrazku, ta bude vyuzita pri stiahnuti
+	// adresy z textoveho pola..
 	
 	public BufferedImage getImage() {
 		return this.image;
