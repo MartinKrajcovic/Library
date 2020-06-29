@@ -57,10 +57,12 @@ public class PrintedBook extends Book {
 	 * Nacitanie obrazka zo suboroveho systemu
 	 */
 	public void loadImage(File imagePath) {
-		try {
-			image = ImageIO.read(ImageDownloader.copyImage(imagePath.toPath()));
-		} catch (IOException e) {
-			// invalid path
+		if (imagePath != null) {
+			try {
+				image = ImageIO.read(ImageDownloader.copyImage(imagePath.toPath()));
+			} catch (IOException e) {
+				// invalid path
+			}
 		}
 	}
 	
