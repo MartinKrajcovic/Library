@@ -51,20 +51,16 @@ public class PrintedBook extends Book {
 		return this.format;
 	}
 	
-	// nacitanie obrazka zo suboru
+	/**
+	 * Nacitanie obrazku
+	 */
 	public void loadImage(File imagePath) {
 		try {
 			image = ImageIO.read(imagePath);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("invalid path");
 		}
 	}
-	
-	// loadImage(URL imageAddress) bola vymazana a nahradena triedou
-	// ImageDownloader, ktora zabezpecuje stiahnutie obrazku z internetu
-	// a vratenie adresy ulozeneho obrazku, ta bude vyuzita pri stiahnuti
-	// adresy z textoveho pola..
 	
 	public BufferedImage getImage() {
 		return this.image;
@@ -95,5 +91,5 @@ public class PrintedBook extends Book {
 				+ "\nMain Hero: " + getMainHero()
 				+ "\n======= Plot =======\n " + getPlot();
 	}
-
+	
 }

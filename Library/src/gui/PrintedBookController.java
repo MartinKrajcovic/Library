@@ -97,15 +97,15 @@ public class PrintedBookController implements Initializable {
 	@FXML
 	private void processDroppedImageLocation(DragEvent event) {
 		String path = event.getDragboard().getFiles().get(0).getAbsolutePath();
-		if (checkImageSuffix(path))
+		if (ImageDownloader.checkImageSuffix(path.trim()))
 			imageLocationField.setText(path);
 	}
 	
 	@FXML
 	private void createAndShowBook(ActionEvent event) {
-		if (authorField.getText().isEmpty() 
-				|| titleField.getText().isEmpty() 
-				|| genreField.getText().isEmpty()) {
+		if (authorField.getText().trim().isEmpty() 
+				|| titleField.getText().trim().isEmpty() 
+				|| genreField.getText().trim().isEmpty()) {
 			System.err.println("author, title and genre must be chosen!");
 			return;
 		}
@@ -128,12 +128,10 @@ public class PrintedBookController implements Initializable {
 			try {															     
 				ImageDownloader downloader = new ImageDownloader(location);
 				myBook.loadImage(downloader.download());
+				// ked je neplatna url adresa, tak sa loaduje zo suboru
 			} catch (MalformedURLException urlE) {								 
 				myBook.loadImage(new File(location));							 
-			} catch (IOException e) {
-				// keby sa nepodarilo nacitanie zo suboru
-			}
-			//konvertovanie Image to javafxImage								 
+			} 
 			bookImage.setImage(SwingFXUtils.toFXImage(myBook.getImage(), null)); 
 		});																		 
 		t.start();
@@ -174,18 +172,6 @@ public class PrintedBookController implements Initializable {
 		} catch (NumberFormatException nfe) {
 			return 0;
 		}
-	}
-	
-	private boolean checkImageSuffix(String path) {
-		boolean confirmed = false;
-		String[] suffixes = {"jpg", "png", "bmp", "jpeg", "gif"};
-		for (String suf : suffixes) {
-			if (path.endsWith(suf) || path.endsWith(suf.toUpperCase())) {
-				confirmed = true;
-				break;
-			}
-		}
-		return confirmed;
 	}
 	
 }
