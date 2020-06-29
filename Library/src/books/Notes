@@ -1,9 +1,2 @@
-  - Preverit triedu PrintedBook, ci ma v poriadku metodu na stahovanie
-  		-> pripadne zvazit akym sposobom zefektivnit tuto metodu
-  		-> vlakno?
-  		
-  - Metoda, ktora stahuje subor z pocitaca alebo z internetu by mala subor ukladat
-    do priecinka images.. ked je obrazok na lokalnom disku, tak nech sa skopiruje
-    
-  - 
+
   
