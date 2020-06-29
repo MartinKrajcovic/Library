@@ -8,6 +8,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Tato trieda bude zabezpecovat stiahnutie obrazku z internetu a vrati nam
@@ -15,13 +19,12 @@ import java.net.URL;
  */
 public class ImageDownloader implements Downloader<File> {
 
+	private static final String DESTINATION = "src/images/";
 	private static final String[] SUFFIXES = { "jpg", "png", "jpeg", "gif", "bmp" };
 	private URL imageAddress;
-	private final String DESTINATION;
 
 	public ImageDownloader(String imageAddress) throws MalformedURLException {
 		this.imageAddress = new URL(imageAddress);
-		this.DESTINATION = "src/images/";
 	}
 
 	/**
@@ -39,6 +42,21 @@ public class ImageDownloader implements Downloader<File> {
 		return confirmed;
 	}
 
+	/**
+	 * Tato metoda kopiruje subor obrazku do destinacie vybranej pre obrazky..
+	 * Ak uz subor v tejto lokacii existuje, tak je vrateny ten existujuci subor.
+	 * V opacnom pripade bude vrateny novy subor, ktory bol nakopirovany do 
+	 * destinacie vybranej pre obrazky.
+	 */
+	public static File copyImage(Path source) throws IOException {
+		Path target = Paths.get(DESTINATION + source.getFileName());
+		try {
+			return Files.copy(source, target).toFile();
+		} catch (FileAlreadyExistsException faee) {
+			return target.toFile();
+		}
+	}
+	
 	/**
 	 * Tato metoda ma za ulohu stiahnut obrazok z internetu a vratit
 	 * objekt stiahnuteho suboru ulozeneho v subsysteme.
@@ -78,6 +96,8 @@ public class ImageDownloader implements Downloader<File> {
 	 * 
 	 * Ak url adresa obsahuje znaky za priponou obrazku, tak sa
 	 * tento zvysny udaj odstrani a ostane retazec konciaci platnou priponou.
+	 * 
+	 * Priklad: https://mrtns.eu/tovar/_1/171/l171816.jpg?v=1592301659
 	 */
 	private String getFileDestination() {
 		String fileName = imageAddress.getFile();

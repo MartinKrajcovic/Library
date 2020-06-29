@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import connections.ImageDownloader;
+
 public class PrintedBook extends Book {
 	
 	private Binding binding;
@@ -19,9 +21,9 @@ public class PrintedBook extends Book {
 		format = PrintedFormat.Undefined;
 		ISBN = "Undefined";
 		try {
-			image = ImageIO.read(new File("src/images/no_book.jpg"));
+			image = ImageIO.read(new File("src/images/default/no_book.jpg"));
 		} catch (IOException e) {
-			System.err.println("no_book.jpg image problem!");
+			System.err.println("could not load a default image");
 		}
 	}
 	
@@ -52,13 +54,13 @@ public class PrintedBook extends Book {
 	}
 	
 	/**
-	 * Nacitanie obrazku
+	 * Nacitanie obrazka zo suboroveho systemu
 	 */
 	public void loadImage(File imagePath) {
 		try {
-			image = ImageIO.read(imagePath);
+			image = ImageIO.read(ImageDownloader.copyImage(imagePath.toPath()));
 		} catch (IOException e) {
-			System.err.println("invalid path");
+			// invalid path
 		}
 	}
 	
