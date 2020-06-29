@@ -4,4 +4,5 @@ public interface Downloader<T> {
 
 	public T download();
 	
+	
 }
