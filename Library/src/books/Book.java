@@ -2,6 +2,7 @@ package books;
 
 import java.time.Year;
 
+// 1
 public abstract class Book {
 
 	private final String author;

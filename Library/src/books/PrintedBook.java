@@ -8,18 +8,21 @@ import javax.imageio.ImageIO;
 
 import connections.ImageDownloader;
 
+// 3
 public class PrintedBook extends Book {
 	
 	private Binding binding;
 	private PrintedFormat format;
 	private BufferedImage image;
 	private String ISBN;
+	private int weight;
 	
 	// initialization block
 	{
 		binding = Binding.Undefined;
 		format = PrintedFormat.Undefined;
 		ISBN = "Undefined";
+		weight = 0;
 		try {
 			image = ImageIO.read(new File("src/images/default/no_book.jpg"));
 		} catch (IOException e) {
@@ -77,6 +80,15 @@ public class PrintedBook extends Book {
 	
 	public String getISBN() {
 		return ISBN;
+	}
+	
+	public void setWeight(int weight) {
+		if (weight > 0)
+			this.weight = weight;
+	}
+	
+	public int getWeight() {
+		return this.weight;
 	}
 	
 	@Override

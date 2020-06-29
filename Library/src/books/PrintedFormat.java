@@ -2,6 +2,7 @@ package books;
 /**
  * Tato trieda sluzi ako zoznam konstant, pre vytlacene formaty knih.
  */
+// 2
 public enum PrintedFormat {
 	
 	Undefined,
