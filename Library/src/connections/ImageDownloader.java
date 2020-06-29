@@ -64,6 +64,10 @@ public class ImageDownloader implements Downloader<File> {
 	@Override
 	public File download() {
 		File imageFile = new File(getFileDestination());
+		// ak subor uz existuje v destinacii, tak nech sa nestahuje
+		if (imageFile.exists()) {
+			return imageFile;
+		}
 		InputStream iStream = null;
 		OutputStream oStream = null;
 		try {
