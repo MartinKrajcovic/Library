@@ -101,6 +101,7 @@ public class PrintedBookController implements Initializable {
 			imageLocationField.setText(path);
 	}
 	
+	// Stlacenie tlacidla
 	@FXML
 	private void createAndShowBook(ActionEvent event) {
 		if (authorField.getText().trim().isEmpty() 
