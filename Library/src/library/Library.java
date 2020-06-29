@@ -10,9 +10,7 @@ public abstract class Library<T extends Book> {
 	private List<T> library = new ArrayList<>();
 	
 	public boolean addBook(T book) {
-		if (library.add(book))
-			return true;
-		return false;
+		return library.add(book);
 	}
 	
 	
