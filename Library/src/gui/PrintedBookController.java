@@ -19,6 +19,9 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -111,7 +114,8 @@ public class PrintedBookController implements Initializable {
 		if (authorField.getText().trim().isEmpty() 
 				|| titleField.getText().trim().isEmpty() 
 				|| genreField.getText().trim().isEmpty()) {
-			System.err.println("author, title and genre must be chosen!");
+			Alert alert = new Alert(AlertType.WARNING, "Author, Title and Genre must be specified !", ButtonType.OK);
+			alert.showAndWait();
 			return;
 		}
 		PrintedBook myBook = new PrintedBook(authorField.getText(), 
