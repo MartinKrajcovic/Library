@@ -36,7 +36,7 @@
       <TextArea fx:id="plotArea" layoutX="13.0" layoutY="178.0" onDragDropped="#processDroppedPlot" onDragOver="#allowPlotDrop" prefHeight="273.0" prefWidth="280.0" promptText="Drag and drop the plot in file, or type the plot in." />
       
 	  <Button layoutX="461.0" layoutY="460.0" mnemonicParsing="false" onAction="#createAndShowBook" prefHeight="25.0" prefWidth="149.0" text="Create and show book" />
-      <Button layoutX="300.0" layoutY="460.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="25.0" prefWidth="149.0" text="Reset all fields" />
+      <Button layoutX="299.0" layoutY="460.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="25.0" prefWidth="149.0" text="Reset all fields" />
       <Button layoutX="14.0" layoutY="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Add book to Library" />
       
       <ImageView fx:id="bookImage" fitHeight="273.0" fitWidth="194.0" layoutX="300.0" layoutY="178.0" onDragOver="#processDroppedPlot" pickOnBounds="true" preserveRatio="true" />
