@@ -101,11 +101,13 @@ public class PrintedBook extends Book {
 				+ "\nLanguage: " + getLanguage()
 				+ "\nBinding: " + getBinding()
 				+ "\nFormat: " + getFormat()
-				+ "\nPublished: " + getPublished()
-				+ "\nPrice: " + getPrice()
 				+ "\nPages: " + getPages()
 				+ "\nChapters: " + getChapters()
+				+ "\nPublished: " + getPublished()
+				+ "\nVersion: " + getVersion()
+				+ "\nISBN: " + getISBN()
 				+ "\nMain Hero: " + getMainHero()
+				+ "\nPrice: " + getPrice()
 				+ "\n======= Plot =======\n " + getPlot();
 	}
 	
