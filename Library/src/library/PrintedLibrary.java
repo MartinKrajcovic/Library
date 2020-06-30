@@ -1,12 +1,16 @@
 package library;
 
+import java.io.File;
+
 import books.PrintedBook;
 
 public class PrintedLibrary extends Library<PrintedBook>{
 
+	private final File SAVED_LOCATION;
 	private static PrintedLibrary library;
 	
 	private PrintedLibrary() {
+		SAVED_LOCATION = new File("src/library/save/pbl.dat");
 		loadLibrary();
 	}
 	
