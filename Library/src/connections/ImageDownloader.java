@@ -1,10 +1,10 @@
 package connections;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -68,13 +68,13 @@ public class ImageDownloader implements Downloader<File> {
 		if (imageFile.exists()) {
 			return imageFile;
 		}
-		InputStream iStream = null;
-		OutputStream oStream = null;
+		BufferedInputStream iStream = null;
+		BufferedOutputStream oStream = null;
 		try {
 			HttpURLConnection con = (HttpURLConnection) imageAddress.openConnection();
 			con.connect();
-			iStream = con.getInputStream();
-			oStream = new FileOutputStream(imageFile);
+			iStream = new BufferedInputStream(con.getInputStream());
+			oStream = new BufferedOutputStream(new FileOutputStream(imageFile));
 			int i = 0;
 			while ((i = iStream.read()) != -1) {
 				oStream.write(i);
