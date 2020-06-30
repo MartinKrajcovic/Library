@@ -40,7 +40,9 @@ public class PrintedBookController implements Initializable {
 	@FXML private TextField pagesField;
 	@FXML private TextField chaptersField;
 	@FXML private TextField publishedField;
+	@FXML private TextField versionField;
 	@FXML private TextField priceField;
+	@FXML private TextField ISBNField;
 	@FXML private TextField mainHeroField;
 	@FXML private TextField imageLocationField;
 	@FXML private ImageView bookImage;
