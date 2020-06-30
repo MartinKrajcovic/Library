@@ -3,15 +3,15 @@ package books;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
 import connections.ImageDownloader;
 
-// 3
-public class PrintedBook extends Book {
+public class PrintedBook extends Book implements Serializable {
 	
-	private static final long serialVersionUID = 2288022328189879723L;
+	private static final long serialVersionUID = 128L;
 	private Binding binding;
 	private PrintedFormat format;
 	private BufferedImage image;
