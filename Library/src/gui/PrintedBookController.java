@@ -119,8 +119,10 @@ public class PrintedBookController implements Initializable {
 		myBook.setPages(parseInt(pagesField.getText().trim()));
 		myBook.setChapters(parseInt(chaptersField.getText().trim()));
 		myBook.setPublished(parseInt(publishedField.getText().trim()));
-		myBook.setPrice(parseDouble(priceField.getText().trim()));
+		myBook.setVersion(parseInt(versionField.getText().trim()));
+		myBook.setISBN(ISBNField.getText());
 		myBook.setMainHero(mainHeroField.getText());
+		myBook.setPrice(parseDouble(priceField.getText().trim()));
 		myBook.loadPlot(plotArea.getText());	
 																		 																		 
 		// zobrazenie textovej reprezentacie objektu							 
@@ -152,6 +154,8 @@ public class PrintedBookController implements Initializable {
 		pagesField.setText("");
 		chaptersField.setText("");
 		publishedField.setText("");
+		versionField.setText("");
+		ISBNField.setText("");
 		priceField.setText("");
 		mainHeroField.setText("");
 		imageLocationField.setText("");
