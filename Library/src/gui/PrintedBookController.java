@@ -47,6 +47,7 @@ public class PrintedBookController implements Initializable {
 	@FXML private TextField imageLocationField;
 	@FXML private ImageView bookImage;
 	private final Tooltip tooltipEmpty = new Tooltip("This field cannot be empty");
+	private final Tooltip tooltipDragDrop = new Tooltip("Use drag and drop");
 	
 	ObservableList<Language> languageList = FXCollections.observableArrayList(Language.values());
 	ObservableList<Binding> bindingList = FXCollections.observableArrayList(Binding.values());
@@ -64,6 +65,7 @@ public class PrintedBookController implements Initializable {
 		authorField.setTooltip(tooltipEmpty);
 		titleField.setTooltip(tooltipEmpty);
 		genreField.setTooltip(tooltipEmpty);
+		imageLocationField.setTooltip(tooltipDragDrop);
 	}
 
 	@FXML
