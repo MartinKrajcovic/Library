@@ -132,6 +132,6 @@ public class PrintedBook extends Book implements Serializable, Comparable<Printe
 				+ "\nMain Hero: " + getMainHero()
 				+ "\nPrice: " + getPrice()
 				+ "\n======= Plot =======\n " + getPlot();
-	}
+	}	
 	
 }
