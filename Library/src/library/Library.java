@@ -9,7 +9,6 @@ import books.Book;
 
 public abstract class Library<T extends Book & Serializable & Comparable<T>> {
 	
-	private int books = 0;
 	private List<T> library = new ArrayList<>();
 	private Comparator<T> order;
 	
@@ -17,7 +16,6 @@ public abstract class Library<T extends Book & Serializable & Comparable<T>> {
 	public boolean addBook(T book) {
 		boolean success;
 		if ((success = library.add(book))) {
-			books++;
 			library.sort(order);
 		}
 		return success;
@@ -25,15 +23,11 @@ public abstract class Library<T extends Book & Serializable & Comparable<T>> {
 
 	// upravovaci mechanizmus
 	public boolean dropBook(T book) {
-		boolean success;
-		if ((success = library.remove(book))) {
-			books--;
-		}
-		return success;
+		return library.remove(book);
 	}
 	
 	public int getBookCount() {
-		return this.books;
+		return library.size();
 	}
 	
 	public List<T> getLibraryContent() {
