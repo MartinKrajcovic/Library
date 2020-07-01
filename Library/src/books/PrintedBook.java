@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 import connections.ImageDownloader;
 
-public class PrintedBook extends Book implements Serializable {
+public class PrintedBook extends Book implements Serializable, Comparable<PrintedBook> {
 	
 	private static final long serialVersionUID = 128L;
 	private Binding binding;
@@ -90,6 +90,29 @@ public class PrintedBook extends Book implements Serializable {
 	
 	public int getWeight() {
 		return this.weight;
+	}
+	
+	// pozriet knihu na strane 554 pre citatelnejsi zapis
+	@Override
+	public int compareTo(PrintedBook obj) {
+		if (this.getAuthor().substring(this.getAuthor().lastIndexOf(' ') + 1).compareTo(obj.getAuthor().substring(obj.getAuthor().lastIndexOf(' ') + 1)) > 0) {
+			return 1;
+		} else if (this.getAuthor().substring(this.getAuthor().lastIndexOf(' ') + 1).compareTo(obj.getAuthor().substring(obj.getAuthor().lastIndexOf(' ') + 1)) < 0) {
+			return -1;
+		} else {
+			if (this.getNumberInSeries() > obj.getNumberInSeries()) {
+				return 1;
+			} else if (this.getNumberInSeries() < obj.getNumberInSeries()) {
+				return -1;
+			} else {
+				if (this.getPublished() > obj.getPublished()) {
+					return 1;
+				} else if (this.getPublished() < obj.getPublished()) {
+					return -1;
+				}
+			}
+		}
+		return 0;	
 	}
 	
 	@Override
