@@ -15,6 +15,7 @@ public abstract class Book {
 	private int chapters;
 	private int published;
 	private int version;
+	private int numberInSeries;
 	
 	private String mainHero;
 	private String plot;
@@ -23,7 +24,7 @@ public abstract class Book {
 		publisher = mainHero = plot = "Undefined";
 		pages = chapters = 1;
 		language = Language.Undefined;
-		published = 0;
+		published = numberInSeries = 0;
 	}
 	
 	public Book (String author, String title, String genre) {
@@ -107,6 +108,14 @@ public abstract class Book {
 	
 	public int getVersion() {
 		return version;
+	}
+	
+	public void setNumberInSeries(int numberInSeries) {
+		this.numberInSeries = numberInSeries;
+	}
+	
+	public int getNumberInSeries() {
+		return this.numberInSeries;
 	}
 	
 	public void setMainHero(String mainHero) {
