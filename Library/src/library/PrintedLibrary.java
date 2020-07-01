@@ -7,8 +7,7 @@ import java.io.ObjectInputStream;
 
 import books.PrintedBook;
 
-@SuppressWarnings("serial")
-public class PrintedLibrary extends Library<PrintedBook>{
+public class PrintedLibrary extends Library<PrintedBook> {
 
 	private final File SAVED_LOCATION;
 	private static PrintedLibrary library;
