@@ -19,9 +19,6 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -29,7 +26,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import library.PrintedLibrary;
 
 public class PrintedBookController implements Initializable {
 
@@ -52,7 +48,6 @@ public class PrintedBookController implements Initializable {
 	@FXML private TextField imageLocationField;
 	@FXML private ImageView bookImage;
 	private final Tooltip tooltipDragDrop = new Tooltip("You can use drag and drop here");
-	private PrintedLibrary p;
 	private PrintedBook myBook;
 	
 	ObservableList<Language> languageList = FXCollections.observableArrayList(Language.values());
@@ -67,9 +62,7 @@ public class PrintedBookController implements Initializable {
 		bindingBox.setItems(bindingList);
 		formatBox.setValue(PrintedFormat.Undefined);
 		formatBox.setItems(formatList);
-		
 		imageLocationField.setTooltip(tooltipDragDrop);
-		p = PrintedLibrary.getInstance();
 	}
 
 	@FXML
@@ -109,14 +102,10 @@ public class PrintedBookController implements Initializable {
 			imageLocationField.setText(path);
 	}
 	
-	// Stlacenie tlacidla
 	@FXML
 	private void createAndShowBook(ActionEvent event) {
-		if (authorField.getText().trim().isEmpty() 
-				|| titleField.getText().trim().isEmpty() 
-				|| genreField.getText().trim().isEmpty()) {
-			Alert alert = new Alert(AlertType.WARNING, "Author, Title and Genre must be specified !", ButtonType.OK);
-			alert.showAndWait();
+		if (!checkImportantFields()) {
+			Alerts.warningAlert("Author, title and genre must be specified!");
 			return;
 		}
 		myBook = new PrintedBook(authorField.getText(), 
@@ -132,8 +121,7 @@ public class PrintedBookController implements Initializable {
 		myBook.setMainHero(mainHeroField.getText());
 		myBook.setPrice(parseDouble(priceField.getText().trim()));
 		myBook.loadPlot(plotArea.getText());	
-																		 																		 
-		// zobrazenie textovej reprezentacie objektu							 
+							 
 		plotArea.setText(myBook.toString());							
 		
 		String location = imageLocationField.getText().trim(); 					 
@@ -141,13 +129,13 @@ public class PrintedBookController implements Initializable {
 			try {															     
 				ImageDownloader downloader = new ImageDownloader(location);
 				myBook.loadImage(downloader.download());
-				// ked je neplatna url adresa, tak sa loaduje zo suboru
 			} catch (MalformedURLException urlE) {								 
 				myBook.loadImage(new File(location));							 
 			} 
 			bookImage.setImage(SwingFXUtils.toFXImage(myBook.getImage(), null)); 
 		});																		 
 		t.start();
+		Alerts.infoAlert("A new book has been created!\nNow you can add it to your library..");
 	}																			 
 	
 	@FXML
@@ -170,14 +158,24 @@ public class PrintedBookController implements Initializable {
 		imageLocationField.setText("");
 		plotArea.setText("");
 		bookImage.setImage(null);
-		p.saveLibrary();
 	}
 	
 	@FXML
 	private void addToLibrary(ActionEvent event) {
-		p.addBook(myBook);
-		Alert alert = new Alert(AlertType.INFORMATION, "Book added to Library!\nContains " + p.countBooks() + " books", ButtonType.OK);
-		alert.showAndWait();
+		if (myBook == null) {
+			Alerts.warningAlert("You must create a book to use this option.");
+			return;
+		}
+		myBook = null;
+		Alerts.infoAlert("This option is not available yet");
+	}
+	
+	private boolean checkImportantFields() {
+		if (authorField.getText().trim().isEmpty() 
+				|| titleField.getText().trim().isEmpty() 
+				|| genreField.getText().trim().isEmpty())
+			return false;
+		return true;
 	}
 	
 	private int parseInt(String text) {
