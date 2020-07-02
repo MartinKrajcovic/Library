@@ -39,18 +39,21 @@ public class PrintedLibrary extends Library<PrintedBook> {
 		}
 	}
 
+	// TOTO JE BORDEEEEEEEL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// refaktor try blokov a if bloku + overit, ci sa musi vytvarat len subor alebo aj cesta
 	public void saveLibrary() {
 		if (!SAVED_LOCATION.exists()) {
 			try {
 				SAVED_LOCATION.getParentFile().mkdirs();
 				SAVED_LOCATION.createNewFile();
-				try (ObjectOutputStream ois = new ObjectOutputStream(new FileOutputStream(SAVED_LOCATION))){
-					ois.writeObject(getLibrary());
-				} 
 			} catch (IOException e) {
-				
+				e.printStackTrace();
 			}
+		}
+		try (ObjectOutputStream ois = new ObjectOutputStream(new FileOutputStream(SAVED_LOCATION))){
+			ois.writeObject(getLibrary());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

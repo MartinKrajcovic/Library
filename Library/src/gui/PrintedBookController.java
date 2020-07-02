@@ -29,6 +29,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
+import library.PrintedLibrary;
 
 public class PrintedBookController implements Initializable {
 
@@ -51,6 +52,8 @@ public class PrintedBookController implements Initializable {
 	@FXML private TextField imageLocationField;
 	@FXML private ImageView bookImage;
 	private final Tooltip tooltipDragDrop = new Tooltip("You can use drag and drop here");
+	private PrintedLibrary p;
+	private PrintedBook myBook;
 	
 	ObservableList<Language> languageList = FXCollections.observableArrayList(Language.values());
 	ObservableList<Binding> bindingList = FXCollections.observableArrayList(Binding.values());
@@ -66,6 +69,7 @@ public class PrintedBookController implements Initializable {
 		formatBox.setItems(formatList);
 		
 		imageLocationField.setTooltip(tooltipDragDrop);
+		p = PrintedLibrary.getInstance();
 	}
 
 	@FXML
@@ -115,7 +119,7 @@ public class PrintedBookController implements Initializable {
 			alert.showAndWait();
 			return;
 		}
-		PrintedBook myBook = new PrintedBook(authorField.getText(), 
+		myBook = new PrintedBook(authorField.getText(), 
 				titleField.getText(), genreField.getText(), publisherField.getText(), 
 				languageBox.getValue(), bindingBox.getValue(), formatBox.getValue());
 		
@@ -166,6 +170,14 @@ public class PrintedBookController implements Initializable {
 		imageLocationField.setText("");
 		plotArea.setText("");
 		bookImage.setImage(null);
+		p.saveLibrary();
+	}
+	
+	@FXML
+	private void addToLibrary(ActionEvent event) {
+		p.addBook(myBook);
+		Alert alert = new Alert(AlertType.INFORMATION, "Book added to Library!\nContains " + p.countBooks() + " books", ButtonType.OK);
+		alert.showAndWait();
 	}
 	
 	private int parseInt(String text) {

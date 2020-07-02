@@ -9,7 +9,7 @@ import books.Book;
 
 public abstract class Library<T extends Book & Serializable & Comparable<T>> {
 	
-	private List<T> library;
+	private List<T> library = new ArrayList<>();
 	private Comparator<T> ordering;
 	
 	// upravovaci mechanizmus
