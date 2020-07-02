@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 import connections.ImageDownloader;
 
-public class PrintedBook extends Book implements Serializable, Comparable<PrintedBook> {
+public class PrintedBook extends Book implements Comparable<PrintedBook> {
 	
 	private static final long serialVersionUID = 128L;
 	private Binding binding;

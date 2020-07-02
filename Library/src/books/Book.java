@@ -1,9 +1,11 @@
 package books;
 
+import java.io.Serializable;
 import java.time.Year;
 
-public abstract class Book {
+public abstract class Book implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private final String author;
 	private final String title;
 	private final String genre;
