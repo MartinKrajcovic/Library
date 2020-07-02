@@ -16,8 +16,8 @@ public abstract class Book implements Serializable {
 	private int pages;
 	private int chapters;
 	private int published;
-	private int version;
-	private int numberInSeries;
+	private int edition;
+	private int orderInSeries;
 	
 	private String mainHero;
 	private String plot;
@@ -26,7 +26,7 @@ public abstract class Book implements Serializable {
 		publisher = mainHero = plot = "Undefined";
 		pages = chapters = 1;
 		language = Language.Undefined;
-		published = numberInSeries = 0;
+		published = orderInSeries = 0;
 	}
 	
 	public Book (String author, String title, String genre) {
@@ -103,21 +103,21 @@ public abstract class Book implements Serializable {
 		return this.published;
 	}
 	
-	public void setVersion(int version) {
-		if (version > 0)
-			this.version = version;
+	public void setEdition(int edition) {
+		if (edition > 0)
+			this.edition = edition;
 	}
 	
-	public int getVersion() {
-		return version;
+	public int getEdition() {
+		return edition;
 	}
 	
-	public void setNumberInSeries(int numberInSeries) {
-		this.numberInSeries = numberInSeries;
+	public void setOrderInSeries(int orderInSeries) {
+		this.orderInSeries = orderInSeries;
 	}
 	
-	public int getNumberInSeries() {
-		return this.numberInSeries;
+	public int getOrderInSeries() {
+		return this.orderInSeries;
 	}
 	
 	public void setMainHero(String mainHero) {

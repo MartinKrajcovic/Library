@@ -43,7 +43,8 @@ public class PrintedBookController implements Initializable {
 	@FXML private TextField pagesField;
 	@FXML private TextField chaptersField;
 	@FXML private TextField publishedField;
-	@FXML private TextField versionField;
+	@FXML private TextField orderInSeriesField;
+	@FXML private TextField editionField;
 	@FXML private TextField priceField;
 	@FXML private TextField ISBNField;
 	@FXML private TextField mainHeroField;
@@ -121,7 +122,8 @@ public class PrintedBookController implements Initializable {
 		myBook.setPages(parseInt(pagesField.getText().trim()));
 		myBook.setChapters(parseInt(chaptersField.getText().trim()));
 		myBook.setPublished(parseInt(publishedField.getText().trim()));
-		myBook.setVersion(parseInt(versionField.getText().trim()));
+		myBook.setOrderInSeries(parseInt(orderInSeriesField.getText().trim()));
+		myBook.setEdition(parseInt(editionField.getText().trim()));
 		myBook.setISBN(ISBNField.getText());
 		myBook.setMainHero(mainHeroField.getText());
 		myBook.setPrice(parseDouble(priceField.getText().trim()));
@@ -156,7 +158,8 @@ public class PrintedBookController implements Initializable {
 		pagesField.setText("");
 		chaptersField.setText("");
 		publishedField.setText("");
-		versionField.setText("");
+		orderInSeriesField.setText("");
+		editionField.setText("");
 		ISBNField.setText("");
 		priceField.setText("");
 		mainHeroField.setText("");

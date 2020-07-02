@@ -100,9 +100,9 @@ public class PrintedBook extends Book implements Comparable<PrintedBook> {
 		} else if (this.getAuthor().substring(this.getAuthor().lastIndexOf(' ') + 1).compareTo(obj.getAuthor().substring(obj.getAuthor().lastIndexOf(' ') + 1)) < 0) {
 			return -1;
 		} else {
-			if (this.getNumberInSeries() > obj.getNumberInSeries()) {
+			if (this.getOrderInSeries() > obj.getOrderInSeries()) {
 				return 1;
-			} else if (this.getNumberInSeries() < obj.getNumberInSeries()) {
+			} else if (this.getOrderInSeries() < obj.getOrderInSeries()) {
 				return -1;
 			} else {
 				if (this.getPublished() > obj.getPublished()) {
@@ -127,7 +127,8 @@ public class PrintedBook extends Book implements Comparable<PrintedBook> {
 				+ "\nPages: " + getPages()
 				+ "\nChapters: " + getChapters()
 				+ "\nPublished: " + getPublished()
-				+ "\nVersion: " + getVersion()
+				+ "\nIn series: " + getOrderInSeries()
+				+ "\nVersion: " + getEdition()
 				+ "\nISBN: " + getISBN()
 				+ "\nMain Hero: " + getMainHero()
 				+ "\nPrice: " + getPrice()
