@@ -11,10 +11,11 @@ import connections.ImageDownloader;
 
 public class PrintedBook extends Book implements Comparable<PrintedBook> {
 	
+	// POZOR ! -> BufferedImage nie je mozne serializovat
 	private static final long serialVersionUID = 128L;
 	private Binding binding;
 	private PrintedFormat format;
-	private BufferedImage image;
+	private transient BufferedImage image;
 	private String ISBN;
 	private int weight;
 	
