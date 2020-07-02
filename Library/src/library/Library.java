@@ -9,14 +9,14 @@ import books.Book;
 
 public abstract class Library<T extends Book & Serializable & Comparable<T>> {
 	
-	private List<T> library = new ArrayList<>();
-	private Comparator<T> order;
+	private List<T> library;
+	private Comparator<T> ordering;
 	
 	// upravovaci mechanizmus
 	public boolean addBook(T book) {
 		boolean success;
 		if ((success = library.add(book))) {
-			library.sort(order);
+			library.sort(ordering);
 		}
 		return success;
 	}
@@ -26,17 +26,23 @@ public abstract class Library<T extends Book & Serializable & Comparable<T>> {
 		return library.remove(book);
 	}
 	
-	public int getBookCount() {
+	public int countBooks() {
 		return library.size();
 	}
 	
-	public List<T> getLibraryContent() {
-		return new ArrayList<>(library);
+	public void createLibrary(List<T> library) {
+		this.library = new ArrayList<>(library);
 	}
 	
+	public List<T> getLibrary() {
+		return (this.library != null) ? this.library : new ArrayList<>();
+	}
+	
+	public abstract boolean dropLibrary();
+	
 	// zoradovaci mechanizmus
-	public void setOrder(Comparator<T> order) {
-		this.order = order;
+	public void setOrdering(Comparator<T> ordering) {
+		this.ordering = ordering;
 	}
 	
 }
