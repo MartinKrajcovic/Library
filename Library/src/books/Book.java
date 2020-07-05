@@ -21,12 +21,14 @@ public abstract class Book implements Serializable {
 	
 	private String mainHero;
 	private String plot;
+	private String ReadState;
 	
 	{
 		publisher = mainHero = plot = "Undefined";
 		pages = chapters = 1;
 		language = Language.Undefined;
 		published = orderInSeries = 0;
+		ReadState = "Unread";
 	}
 	
 	public Book (String author, String title, String genre) {
@@ -128,6 +130,15 @@ public abstract class Book implements Serializable {
 	public String getMainHero() {
 		return this.mainHero;
 	}
+	
+	public void setReadState(String ReadState) {
+		this.ReadState = ReadState;
+	}
+	
+	public String  getReadState() {
+		return this.ReadState;
+	}
+	
 	
 	public void loadPlot(String plot) {
 		if (!plot.trim().isEmpty())
