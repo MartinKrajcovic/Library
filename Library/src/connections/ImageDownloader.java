@@ -20,9 +20,10 @@ import java.nio.file.Paths;
 public class ImageDownloader implements Downloader<File> {
 
 	private static final String DESTINATION = "src/images/";
-	private static final String[] SUFFIXES = { "jpg", "png", "jpeg", "gif", "bmp" };
+	private static String imageFormats = "jpg png jpeg gif bmp";
+	private static final String[] SUFFIXES = (imageFormats + " " + imageFormats.toUpperCase()).split(" ");
 	private URL imageAddress;
-
+	
 	public ImageDownloader(String imageAddress) throws MalformedURLException {
 		this.imageAddress = new URL(imageAddress);
 	}
@@ -34,7 +35,7 @@ public class ImageDownloader implements Downloader<File> {
 	public static boolean checkImageSuffix(String path) {
 		boolean confirmed = false;
 		for (String suf : SUFFIXES) {
-			if (path.endsWith(suf) || path.endsWith(suf.toUpperCase())) {
+			if (path.endsWith(suf)) {
 				confirmed = true;
 				break;
 			}
@@ -81,6 +82,7 @@ public class ImageDownloader implements Downloader<File> {
 			}
 			return imageFile;
 		} catch (IOException ioe) {
+			// chybovy kod serveru
 			return null;
 		} finally {
 			try {
@@ -108,6 +110,8 @@ public class ImageDownloader implements Downloader<File> {
 		fileName = DESTINATION + fileName.substring(fileName.lastIndexOf('/') + 1);
 		for (String suf : SUFFIXES) {
 			if (fileName.contains(suf) && !fileName.endsWith(suf)) {
+				//skuska
+				System.out.println("Adresa obsahuje suffix");
 				fileName = fileName.substring(0, fileName.lastIndexOf(suf) + suf.length());
 				break;
 			}
