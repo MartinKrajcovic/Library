@@ -25,20 +25,20 @@ public class PrintedLibrary extends Library<PrintedBook> {
 		return (library == null) ? new PrintedLibrary() : library;
 	}
 	
-	// refaktor try bloku a if bloku -> zvazit odstranenie try-with-resources
 	@SuppressWarnings("unchecked")
-	private void loadLibrary() {
-		if (SAVED_LOCATION.exists()) {
-			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SAVED_LOCATION))) {
-				createLibrary((ArrayList<PrintedBook>) ois.readObject());
-			} catch (IOException | ClassNotFoundException ex) {
-				setOrdering((a, b) -> a.compareTo(b));
-			}
-		} else {
-			setOrdering((a, b) -> a.compareTo(b));
+	public void loadLibrary() {
+		if (!SAVED_LOCATION.exists()) {
+			setOrdering(PrintedBook::compareTo);
+			return;
 		}
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SAVED_LOCATION))) {
+			createLibrary((ArrayList<PrintedBook>) ois.readObject());
+		} catch (IOException | ClassNotFoundException e) {
+			setOrdering(PrintedBook::compareTo);
+		}
+		
 	}
-
+	
 	// TOTO JE BORDEEEEEEEL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// refaktor try blokov a if bloku + overit, ci sa musi vytvarat len subor alebo aj cesta
 	public void saveLibrary() {
