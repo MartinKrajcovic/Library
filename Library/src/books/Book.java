@@ -20,14 +20,14 @@ public abstract class Book implements Serializable {
 	
 	private String mainHero;
 	private String plot;
-	private ReadStatus readstatus;
+	private ReadStatus readStatus;
 	
 	{
 		publisher = mainHero = plot = "Undefined";
 		pages = chapters = 1;
 		language = Language.Undefined;
 		published = orderInSeries = 0;
-		readstatus = ReadStatus.Unread;
+		readStatus = ReadStatus.Unread;
 	}
 	
 	public Book (String author, String title, String genre) {
@@ -127,12 +127,12 @@ public abstract class Book implements Serializable {
 		return this.mainHero;
 	}
 	
-	public void setReadStatus(ReadStatus readstatus) {
-		this.readstatus = readstatus;
+	public void setReadStatus(ReadStatus readStatus) {
+		this.readStatus = readStatus;
 	}
 	
 	public ReadStatus  getReadStatus() {
-		return this.readstatus;
+		return this.readStatus;
 	}
 	
 	
