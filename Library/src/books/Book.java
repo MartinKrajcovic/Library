@@ -1,7 +1,6 @@
 package books;
 
 import java.io.Serializable;
-import java.time.Year;
 
 public abstract class Book implements Serializable {
 
@@ -21,14 +20,14 @@ public abstract class Book implements Serializable {
 	
 	private String mainHero;
 	private String plot;
-	private String ReadState;
+	private ReadStatus readstatus;
 	
 	{
 		publisher = mainHero = plot = "Undefined";
 		pages = chapters = 1;
 		language = Language.Undefined;
 		published = orderInSeries = 0;
-		ReadState = "Unread";
+		readstatus = ReadStatus.Unread;
 	}
 	
 	public Book (String author, String title, String genre) {
@@ -97,10 +96,7 @@ public abstract class Book implements Serializable {
 		this.published = published;
 	}
 	
-	public void setPublished(Year published) {
-		this.published = published.getValue();
-	}
-	
+		
 	public int getPublished() {
 		return this.published;
 	}
@@ -131,12 +127,12 @@ public abstract class Book implements Serializable {
 		return this.mainHero;
 	}
 	
-	public void setReadState(String ReadState) {
-		this.ReadState = ReadState;
+	public void setReadStatus(ReadStatus readstatus) {
+		this.readstatus = readstatus;
 	}
 	
-	public String  getReadState() {
-		return this.ReadState;
+	public ReadStatus  getReadStatus() {
+		return this.readstatus;
 	}
 	
 	
