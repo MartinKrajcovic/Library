@@ -13,6 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import exceptions.RefusedConnectionException;
+
 /**
  * Tato trieda bude zabezpecovat stiahnutie obrazku z internetu a vrati nam
  * nazov a umiestnenie obrazku v podobe objektu File
@@ -63,9 +65,9 @@ public class ImageDownloader implements Downloader<File> {
 	 * objekt stiahnuteho suboru ulozeneho v subsysteme.
 	 */
 	@Override
-	public File download() {
+	public File download() throws RefusedConnectionException {
 		File imageFile = new File(getFileDestination());
-		// ak subor uz existuje v destinacii, tak nech sa nestahuje
+		
 		if (imageFile.exists()) {
 			return imageFile;
 		}
@@ -74,6 +76,9 @@ public class ImageDownloader implements Downloader<File> {
 		try {
 			HttpURLConnection con = (HttpURLConnection) imageAddress.openConnection();
 			con.connect();
+			if ((con.getResponseCode() / 100) != 2) {
+				throw new RefusedConnectionException("Server odmietol pripojenie..");
+			}
 			iStream = new BufferedInputStream(con.getInputStream());
 			oStream = new BufferedOutputStream(new FileOutputStream(imageFile));
 			int i = 0;
@@ -82,7 +87,6 @@ public class ImageDownloader implements Downloader<File> {
 			}
 			return imageFile;
 		} catch (IOException ioe) {
-			// chybovy kod serveru
 			return null;
 		} finally {
 			try {
@@ -110,8 +114,6 @@ public class ImageDownloader implements Downloader<File> {
 		fileName = DESTINATION + fileName.substring(fileName.lastIndexOf('/') + 1);
 		for (String suf : SUFFIXES) {
 			if (fileName.contains(suf) && !fileName.endsWith(suf)) {
-				//skuska
-				System.out.println("Adresa obsahuje suffix");
 				fileName = fileName.substring(0, fileName.lastIndexOf(suf) + suf.length());
 				break;
 			}

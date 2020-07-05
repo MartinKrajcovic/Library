@@ -13,6 +13,7 @@ import books.Language;
 import books.PrintedBook;
 import books.PrintedFormat;
 import connections.ImageDownloader;
+import exceptions.RefusedConnectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -124,6 +125,7 @@ public class PrintedBookController implements Initializable {
 							 
 		plotArea.setText(myBook.toString());							
 		
+		// kvoli tomu bordelu dole treba prekopat triedu ImageDownloader na vlakno
 		String location = imageLocationField.getText().trim(); 					 
 		Thread t = new Thread(() -> {	// tuto zvazit nejaky wrapper lambda     
 			try {															     
@@ -131,7 +133,10 @@ public class PrintedBookController implements Initializable {
 				myBook.loadImage(downloader.download());
 			} catch (MalformedURLException urlE) {								 
 				myBook.loadImage(new File(location));							 
-			} 
+			} catch (RefusedConnectionException refused) {
+				// ked bude trieda download samostatnym vlaknom, toto pojde zachytit alertom
+				refused.printStackTrace();
+			}
 			bookImage.setImage(SwingFXUtils.toFXImage(myBook.getImage(), null)); 
 		});																		 
 		t.start();
