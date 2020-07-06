@@ -23,11 +23,11 @@ public abstract class Book implements Serializable {
 	private ReadStatus readStatus;
 	
 	{
+		language = Language.Undefined;
+		readStatus = ReadStatus.Unread;
 		publisher = mainHero = plot = "Undefined";
 		pages = chapters = 1;
-		language = Language.Undefined;
 		published = orderInSeries = 0;
-		readStatus = ReadStatus.Unread;
 	}
 	
 	public Book (String author, String title, String genre) {

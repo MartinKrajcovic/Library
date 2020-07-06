@@ -12,6 +12,7 @@ import books.Binding;
 import books.Language;
 import books.PrintedBook;
 import books.PrintedFormat;
+import books.ReadStatus;
 import connections.ImageDownloader;
 import exceptions.RefusedConnectionException;
 import javafx.collections.FXCollections;
@@ -47,6 +48,8 @@ public class PrintedBookController implements Initializable {
 	@FXML private TextField ISBNField;
 	@FXML private TextField mainHeroField;
 	@FXML private TextField imageLocationField;
+	@FXML private ChoiceBox<ReadStatus> readStatusBox;
+	@FXML private TextField weightField;
 	@FXML private ImageView bookImage;
 	private final Tooltip tooltipDragDrop = new Tooltip("You can use drag and drop here");
 	private PrintedBook myBook;
@@ -54,6 +57,7 @@ public class PrintedBookController implements Initializable {
 	ObservableList<Language> languageList = FXCollections.observableArrayList(Language.values());
 	ObservableList<Binding> bindingList = FXCollections.observableArrayList(Binding.values());
 	ObservableList<PrintedFormat> formatList = FXCollections.observableArrayList(PrintedFormat.values());
+	ObservableList<ReadStatus> statusList = FXCollections.observableArrayList(ReadStatus.values());
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -63,6 +67,8 @@ public class PrintedBookController implements Initializable {
 		bindingBox.setItems(bindingList);
 		formatBox.setValue(PrintedFormat.Undefined);
 		formatBox.setItems(formatList);
+		readStatusBox.setValue(ReadStatus.Unread);
+		readStatusBox.setItems(statusList);
 		imageLocationField.setTooltip(tooltipDragDrop);
 	}
 
@@ -121,9 +127,11 @@ public class PrintedBookController implements Initializable {
 		myBook.setISBN(ISBNField.getText());
 		myBook.setMainHero(mainHeroField.getText());
 		myBook.setPrice(parseDouble(priceField.getText().trim()));
+		myBook.setWeight(parseInt(weightField.getText().trim()));
+		myBook.setReadStatus(readStatusBox.getValue());
 		myBook.loadPlot(plotArea.getText());	
 							 
-		plotArea.setText(myBook.toString());							
+		plotArea.setText(myBook.toString());
 		
 		// kvoli tomu bordelu dole treba prekopat triedu ImageDownloader na vlakno
 		String location = imageLocationField.getText().trim(); 					 
@@ -134,8 +142,7 @@ public class PrintedBookController implements Initializable {
 			} catch (MalformedURLException urlE) {								 
 				myBook.loadImage(new File(location));							 
 			} catch (RefusedConnectionException refused) {
-				// ked bude trieda download samostatnym vlaknom, toto pojde zachytit alertom
-				refused.printStackTrace();
+				refused.getMessage();
 			}
 			bookImage.setImage(SwingFXUtils.toFXImage(myBook.getImage(), null)); 
 		});																		 
@@ -161,6 +168,8 @@ public class PrintedBookController implements Initializable {
 		priceField.setText("");
 		mainHeroField.setText("");
 		imageLocationField.setText("");
+		readStatusBox.setValue(ReadStatus.Unread);
+		weightField.setText("");
 		plotArea.setText("");
 		bookImage.setImage(null);
 	}

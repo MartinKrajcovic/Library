@@ -15,34 +15,36 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font> </Label>
-      <TextField fx:id="authorField" layoutX="14.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="133.0" promptText="Author" />
-      <TextField fx:id="titleField" layoutX="14.0" layoutY="74.0" opacity="0.95" prefHeight="25.0" prefWidth="133.0" promptText="Title" />
-      <TextField fx:id="genreField" layoutX="14.0" layoutY="108.0" opacity="0.95" prefHeight="25.0" prefWidth="133.0" promptText="Genre" />
-      <TextField fx:id="publisherField" layoutX="14.0" layoutY="142.0" opacity="0.95" prefHeight="25.0" prefWidth="133.0" promptText="Publisher" />
+      <TextField fx:id="authorField" layoutX="11.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="126.0" promptText="Author" />
+      <TextField fx:id="titleField" layoutX="11.0" layoutY="74.0" opacity="0.95" prefHeight="25.0" prefWidth="126.0" promptText="Title" />
+      <TextField fx:id="genreField" layoutX="11.0" layoutY="108.0" opacity="0.95" prefHeight="25.0" prefWidth="126.0" promptText="Genre" />
+      <TextField fx:id="publisherField" layoutX="11.0" layoutY="142.0" opacity="0.95" prefHeight="25.0" prefWidth="126.0" promptText="Publisher" />
       
-      <ChoiceBox fx:id="languageBox" layoutX="157.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="133.0" />
-      <ChoiceBox fx:id="bindingBox" layoutX="157.0" layoutY="74.0" opacity="0.95" prefHeight="25.0" prefWidth="133.0" />
-      <ChoiceBox fx:id="formatBox" layoutX="157.0" layoutY="108.0" opacity="0.95" prefHeight="25.0" prefWidth="133.0" />
-      <TextField fx:id="orderInSeriesField" layoutX="157.0" layoutY="142.0" opacity="0.95" prefHeight="25.0" prefWidth="133.0" promptText="Order in series" />
+      <ChoiceBox fx:id="languageBox" layoutX="147.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" />
+      <ChoiceBox fx:id="bindingBox" layoutX="147.0" layoutY="74.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" />
+      <ChoiceBox fx:id="formatBox" layoutX="147.0" layoutY="108.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" />
+      <TextField fx:id="orderInSeriesField" layoutX="147.0" layoutY="142.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" promptText="Order in series" />
       
-      <TextField fx:id="editionField" layoutX="300.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="149.0" promptText="Edition" />
-      <TextField fx:id="pagesField" layoutX="300.0" layoutY="74.0" opacity="0.95" promptText="Number of pages" />
-      <TextField fx:id="chaptersField" layoutX="300.0" layoutY="108.0" opacity="0.95" promptText="Number of chapters" />
-      <TextField fx:id="publishedField" layoutX="300.0" layoutY="142.0" opacity="0.95" promptText="Published (Year)" />
+      <TextField fx:id="editionField" layoutX="263.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" promptText="Edition" />
+      <TextField fx:id="pagesField" layoutX="263.0" layoutY="74.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" promptText="Pages" />
+      <TextField fx:id="chaptersField" layoutX="263.0" layoutY="108.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" promptText="Chapters" />
+      <TextField fx:id="publishedField" layoutX="263.0" layoutY="142.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" promptText="Published (Year)" />
       
-      <TextField fx:id="ISBNField" layoutX="459.0" layoutY="40.0" opacity="0.95" promptText="ISBN" />
-      <TextField fx:id="mainHeroField" layoutX="459.0" layoutY="74.0" opacity="0.95" promptText="Main character" />
-      <TextField fx:id="priceField" layoutX="459.0" layoutY="108.0" opacity="0.95" prefHeight="25.0" prefWidth="149.0" promptText="Price" />
-      <TextField fx:id="imageLocationField" layoutX="459.0" layoutY="142.0" onDragDropped="#processDroppedImageLocation" onDragOver="#allowImageLocationDrop" opacity="0.95" promptText="Image location" />
-     
-      <TextArea fx:id="plotArea" layoutX="13.0" layoutY="178.0" onDragDropped="#processDroppedPlot" onDragOver="#allowPlotDrop" opacity="0.95" prefHeight="273.0" prefWidth="280.0" promptText="Drag and drop the plot in file, or type the plot in." />
+      <TextField fx:id="ISBNField" layoutX="379.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="116.0" promptText="ISBN" />
+      <TextField fx:id="mainHeroField" layoutX="379.0" layoutY="74.0" opacity="0.95" prefHeight="25.0" prefWidth="116.0" promptText="Main character" />
+      <TextField fx:id="priceField" layoutX="379.0" layoutY="108.0" opacity="0.95" prefHeight="25.0" prefWidth="116.0" promptText="Price" />
+      <TextField fx:id="imageLocationField" layoutX="379.0" layoutY="142.0" onDragDropped="#processDroppedImageLocation" onDragOver="#allowImageLocationDrop" opacity="0.95" prefHeight="25.0" prefWidth="116.0" promptText="Image location" />
       
-	  <Button layoutX="461.0" layoutY="460.0" mnemonicParsing="false" onAction="#createAndShowBook" prefHeight="25.0" prefWidth="149.0" text="Create and show book" />
-      <Button layoutX="300.0" layoutY="460.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="25.0" prefWidth="149.0" text="Reset all fields" />
-      <Button layoutX="14.0" layoutY="460.0" mnemonicParsing="false" onAction="#addToLibrary" prefHeight="25.0" prefWidth="149.0" text="Add book to Library" />
+      <ChoiceBox fx:id="readStatusBox" layoutX="505.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" />
+      <TextField fx:id="weightField" layoutX="505.0" layoutY="74.0" opacity="0.95" prefHeight="25.0" prefWidth="106.0" promptText="Weight in grams" />
+      <TextArea fx:id="plotArea" layoutX="11.0" layoutY="178.0" onDragDropped="#processDroppedPlot" onDragOver="#allowPlotDrop" opacity="0.95" prefHeight="273.0" prefWidth="280.0" promptText="Drag and drop the plot in file, or type the plot in." />
       
-      <ImageView fx:id="bookImage" fitHeight="273.0" fitWidth="194.0" layoutX="300.0" layoutY="178.0" onDragOver="#processDroppedPlot" pickOnBounds="true" preserveRatio="true" />
+	  <Button layoutX="462.0" layoutY="460.0" mnemonicParsing="false" onAction="#createAndShowBook" prefHeight="25.0" prefWidth="149.0" text="Create and show book" />
+      <Button layoutX="303.0" layoutY="460.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="25.0" prefWidth="149.0" text="Reset all fields" />
+      <Button layoutX="11.0" layoutY="460.0" mnemonicParsing="false" onAction="#addToLibrary" prefHeight="25.0" prefWidth="149.0" text="Add book to Library" />
       
+      <ImageView fx:id="bookImage" fitHeight="273.0" fitWidth="198.0" layoutX="298.0" layoutY="178.0" onDragOver="#processDroppedPlot" pickOnBounds="true" preserveRatio="true" />
+
  
    </children>
 </Pane>
