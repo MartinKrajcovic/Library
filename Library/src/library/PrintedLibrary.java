@@ -36,7 +36,6 @@ public class PrintedLibrary extends Library<PrintedBook> {
 		} catch (IOException | ClassNotFoundException e) {
 			setOrdering(PrintedBook::compareTo);
 		}
-		
 	}
 	
 	// TOTO JE BORDEEEEEEEL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -57,17 +56,13 @@ public class PrintedLibrary extends Library<PrintedBook> {
 		}
 	}
 	
-	// treba lepsiu implementaciu!!! nech overuje atributy suboru
 	@Override
 	public boolean dropLibrary() {
-		boolean success;
 		try {
 			getLibrary().clear();
-			Files.delete(SAVED_LOCATION.toPath());
-			success = true;
+			return Files.deleteIfExists(SAVED_LOCATION.toPath());
 		} catch (IOException e) {
-			success = false;
-		}
-		return success;
+			return false;
+		}	
 	}
 }
