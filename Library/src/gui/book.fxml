@@ -11,9 +11,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="622.0" stylesheets="@bookBackgroundStyle.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PrintedBookController">
    <children>
-   <Label alignment="CENTER" layoutX="127.0" layoutY="3.0" prefHeight="17.0" prefWidth="369.0" text="PRINTED BOOK" textAlignment="CENTER">
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="4.0" prefHeight="17.0" prefWidth="369.0" text="PRINTED BOOK" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="Century" size="20.0" />
          </font> </Label>
       <TextField fx:id="authorField" layoutX="11.0" layoutY="40.0" opacity="0.95" prefHeight="25.0" prefWidth="126.0" promptText="Author" />
       <TextField fx:id="titleField" layoutX="11.0" layoutY="74.0" opacity="0.95" prefHeight="25.0" prefWidth="126.0" promptText="Title" />
