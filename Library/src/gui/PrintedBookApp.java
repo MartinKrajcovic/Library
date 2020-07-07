@@ -14,7 +14,7 @@ public class PrintedBookApp extends Application{
 	        Scene scene = new Scene(root);
 	        
 	        stage.setScene(scene);
-	        stage.setTitle("New book");
+	        stage.setTitle("Library - New book");
 	        stage.show();
 	    }
 
