@@ -26,6 +26,7 @@ public class PrintedLibrary extends Library<PrintedBook> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Override
 	public void loadLibrary() {
 		if (!SAVED_LOCATION.exists()) {
 			setOrdering(PrintedBook::compareTo);
@@ -38,17 +39,8 @@ public class PrintedLibrary extends Library<PrintedBook> {
 		}
 	}
 	
-	// TOTO JE BORDEEEEEEEL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// refaktor try blokov a if bloku + overit, ci sa musi vytvarat len subor alebo aj cesta
 	public void saveLibrary() {
-		if (!SAVED_LOCATION.exists()) {
-			try {
-				SAVED_LOCATION.getParentFile().mkdirs();
-				SAVED_LOCATION.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		SAVED_LOCATION.getParentFile().mkdirs();
 		try (ObjectOutputStream ois = new ObjectOutputStream(new FileOutputStream(SAVED_LOCATION))){
 			ois.writeObject(getLibrary());
 		} catch (IOException e) {
