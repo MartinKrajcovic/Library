@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sun.glass.ui.Window;
+
 import books.Binding;
 import books.Language;
 import books.PrintedBook;
@@ -21,6 +23,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -182,7 +185,10 @@ public class PrintedBookController implements Initializable {
 		}
 		PrintedLibraryController.printedLibrary.addBook(myBook);
 		myBook = null;
-		Alerts.infoAlert("A new book has been successfully added to the library!");
+		if (Alerts.customConfirmaAlert("A new book has been successfully added to the library!\n"
+				+ "Do you wish create more books?", ButtonType.YES, ButtonType.NO).equals(ButtonType.NO)) {
+			Window.getFocusedWindow().close();
+		}
 	}
 	
 	private boolean checkImportantFields() {

@@ -95,9 +95,9 @@ public class PrintedBook extends Book implements Comparable<PrintedBook> {
 	// pozriet knihu na strane 554 pre citatelnejsi zapis
 	@Override
 	public int compareTo(PrintedBook obj) {
-		if (this.getAuthor().substring(this.getAuthor().lastIndexOf(' ') + 1).compareTo(obj.getAuthor().substring(obj.getAuthor().lastIndexOf(' ') + 1)) > 0) {
+		if (this.getAuthor().substring(this.getAuthor().lastIndexOf(' ') + 1).compareToIgnoreCase(obj.getAuthor().substring(obj.getAuthor().lastIndexOf(' ') + 1)) > 0) {
 			return 1;
-		} else if (this.getAuthor().substring(this.getAuthor().lastIndexOf(' ') + 1).compareTo(obj.getAuthor().substring(obj.getAuthor().lastIndexOf(' ') + 1)) < 0) {
+		} else if (this.getAuthor().substring(this.getAuthor().lastIndexOf(' ') + 1).compareToIgnoreCase(obj.getAuthor().substring(obj.getAuthor().lastIndexOf(' ') + 1)) < 0) {
 			return -1;
 		} else {
 			if (this.getOrderInSeries() > obj.getOrderInSeries()) {

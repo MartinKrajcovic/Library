@@ -32,4 +32,11 @@ public final class Alerts {
 		alert.showAndWait();
 		return alert.getResult();
 	}	
+	
+	public static ButtonType customConfirmaAlert(String message, ButtonType... buttons) {
+		alert = new Alert(AlertType.CONFIRMATION, message, buttons);
+		alert.setHeaderText("");
+		alert.showAndWait();
+		return alert.getResult();
+	}
 }
