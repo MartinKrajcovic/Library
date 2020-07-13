@@ -180,8 +180,9 @@ public class PrintedBookController implements Initializable {
 			Alerts.warningAlert("You must create a book to use this option.");
 			return;
 		}
+		PrintedLibraryController.printedLibrary.addBook(myBook);
 		myBook = null;
-		Alerts.infoAlert("This option is not available yet");
+		Alerts.infoAlert("A new book has been successfully added to the library!");
 	}
 	
 	private boolean checkImportantFields() {

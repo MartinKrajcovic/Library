@@ -39,12 +39,10 @@ public class PrintedLibrary extends Library<PrintedBook> {
 		}
 	}
 	
-	public void saveLibrary() {
+	public void saveLibrary() throws IOException {
 		SAVED_LOCATION.getParentFile().mkdirs();
 		try (ObjectOutputStream ois = new ObjectOutputStream(new FileOutputStream(SAVED_LOCATION))){
-			ois.writeObject(getLibrary());
-		} catch (IOException e) {
-			e.printStackTrace();
+			ois.writeObject((ArrayList<PrintedBook>) getLibrary());
 		}
 	}
 	
