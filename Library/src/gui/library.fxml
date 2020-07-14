@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="1283.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PrintedLibraryController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="1283.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PrintedLibraryController">
    <children>
-      <TableView fx:id="table" layoutY="97.0" prefHeight="480.0" prefWidth="1283.0">
+      <TableView fx:id="table" layoutY="82.0" prefHeight="499.0" prefWidth="1283.0">
         <columns>
           <TableColumn fx:id="table_author" editable="false" prefWidth="130.0" resizable="false" sortable="false" text="Author" />
           <TableColumn fx:id="table_title" editable="false" minWidth="0.0" prefWidth="200.0" resizable="false" sortable="false" text="Title" />
@@ -26,15 +26,17 @@
             <TableColumn fx:id="table_read" editable="false" prefWidth="52.0" resizable="false" style="-fx-alignment: CENTER;" text="Read" />
         </columns>
       </TableView>
-      <Button layoutX="1163.0" layoutY="586.0" mnemonicParsing="false" onAction="#saveLibrary" prefHeight="25.0" prefWidth="106.0" text="Save Library" />
-      <Button mnemonicParsing="false" onAction="#openBookCard" prefHeight="95.0" prefWidth="106.0" text="Create book" />
-      <Button layoutX="1069.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="95.0" prefWidth="106.0" text="Drop book" />
-      <Button layoutX="108.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="106.0" text="Show details" />
-      <Button layoutX="1177.0" mnemonicParsing="false" onAction="#deleteLibrary" prefHeight="95.0" prefWidth="106.0" text="Drop library" />
-      <Label alignment="CENTER" layoutX="452.0" layoutY="25.0" prefHeight="17.0" prefWidth="380.0" text="Fokin' Library">
+      <Button layoutX="1029.0" layoutY="1.0" mnemonicParsing="false" onAction="#saveLibrary" prefHeight="79.0" prefWidth="83.0" text="Save Library" />
+      <Button layoutX="1.0" layoutY="1.0" mnemonicParsing="false" onAction="#openBookCard" prefHeight="79.0" prefWidth="83.0" text="Create book" />
+      <Button layoutX="1114.0" layoutY="1.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="79.0" prefWidth="83.0" text="Drop book" />
+      <Button layoutX="86.0" layoutY="1.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="83.0" text="Show details" />
+      <Button layoutX="1199.0" layoutY="1.0" mnemonicParsing="false" onAction="#deleteLibrary" prefHeight="79.0" prefWidth="83.0" text="Drop library" />
+      <Label alignment="CENTER" layoutX="452.0" layoutY="19.0" prefHeight="17.0" prefWidth="380.0" text="Library">
          <font>
             <Font name="Century" size="36.0" />
          </font>
       </Label>
+      <Button layoutX="256.0" layoutY="1.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="28.0" prefWidth="28.0" text="Refresh" />
+      <Button layoutX="171.0" layoutY="1.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="83.0" text="Edit book" />
    </children>
 </AnchorPane>

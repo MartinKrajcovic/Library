@@ -31,9 +31,11 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Pane;
 
 public class PrintedBookController implements Initializable {
 
+	@FXML private Pane pane;
 	@FXML private TextField authorField;
 	@FXML private TextField titleField;
 	@FXML private TextField genreField;
@@ -185,7 +187,7 @@ public class PrintedBookController implements Initializable {
 		}
 		PrintedLibraryController.printedLibrary.addBook(myBook);
 		myBook = null;
-		if (Alerts.customConfirmaAlert("A new book has been successfully added to the library!\n"
+		if (Alerts.customConfirmAlert("A new book has been successfully added to the library!\n"
 				+ "Do you wish create more books?", ButtonType.YES, ButtonType.NO).equals(ButtonType.NO)) {
 			Window.getFocusedWindow().close();
 		}

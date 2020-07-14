@@ -2,6 +2,7 @@ package gui;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 
 public final class Alerts {
@@ -33,10 +34,17 @@ public final class Alerts {
 		return alert.getResult();
 	}	
 	
-	public static ButtonType customConfirmaAlert(String message, ButtonType... buttons) {
+	public static ButtonType customConfirmAlert(String message, ButtonType... buttons) {
 		alert = new Alert(AlertType.CONFIRMATION, message, buttons);
 		alert.setHeaderText("");
-		alert.showAndWait();
+		
+		Button yesButton= (Button) alert.getDialogPane().lookupButton(ButtonType.YES);
+		yesButton.setDefaultButton(false);
+		
+		Button noButton = (Button) alert.getDialogPane().lookupButton(ButtonType.NO);
+	    noButton.setDefaultButton(true);
+		
+	    alert.showAndWait();
 		return alert.getResult();
 	}
 }

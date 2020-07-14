@@ -15,13 +15,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import library.PrintedLibrary;
 
 public class PrintedLibraryController implements Initializable {
 
+	@FXML private AnchorPane anchorPane;
 	@FXML private TableView<PrintedBook> table;
 	private ObservableList<PrintedBook> tableList;
     public static PrintedLibrary printedLibrary;
@@ -66,6 +70,8 @@ public class PrintedLibraryController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Library - New book");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner((Stage) anchorPane.getScene().getWindow());
         stage.showAndWait();
         update();
 	}
@@ -76,7 +82,7 @@ public class PrintedLibraryController implements Initializable {
 		printedLibrary.dropBook(pb);
 		update();
 	}
-	
+
 	@FXML
 	private void saveLibrary(ActionEvent event) {
 		try {
@@ -86,10 +92,18 @@ public class PrintedLibraryController implements Initializable {
 			Alerts.errorAlert("The library could not be saved");
 		}
 	}
-	
+
 	@FXML
 	private void deleteLibrary(ActionEvent event) {
-		printedLibrary.dropLibrary();
+		if (Alerts.customConfirmAlert("You are about to delete the whole content of the library.\n"
+				+ "Are you sure you want to proceed?", ButtonType.NO, ButtonType.YES).equals(ButtonType.YES)) {
+			printedLibrary.dropLibrary();
+			update();
+		}
+	}
+	
+	@FXML
+	private void refreshTable(ActionEvent event) {
 		update();
 	}
 	
