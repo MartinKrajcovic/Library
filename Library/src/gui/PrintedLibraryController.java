@@ -25,10 +25,10 @@ import library.PrintedLibrary;
 
 public class PrintedLibraryController implements Initializable {
 
-	@FXML private AnchorPane anchorPane;
-	@FXML private TableView<PrintedBook> table;
-	private ObservableList<PrintedBook> tableList;
     public static PrintedLibrary printedLibrary;
+    private ObservableList<PrintedBook> tableList;
+    @FXML private AnchorPane anchorPane;
+	@FXML private TableView<PrintedBook> table;
     @FXML private TableColumn<PrintedBook, String> table_author;
     @FXML private TableColumn<PrintedBook, String> table_title;
     @FXML private TableColumn<PrintedBook, String> table_genre;
