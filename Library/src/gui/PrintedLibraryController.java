@@ -43,7 +43,6 @@ public class PrintedLibraryController implements Initializable {
     @FXML private TableColumn<PrintedBook, String> table_mainHero;
     @FXML private TableColumn<PrintedBook, String> table_read;
     
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		printedLibrary = PrintedLibrary.getInstance();
