@@ -40,7 +40,6 @@ public class PrintedLibraryController implements Initializable {
     @FXML private TableColumn<PrintedBook, Number> table_pages;
     @FXML private TableColumn<PrintedBook, Number> table_published;
     @FXML private TableColumn<PrintedBook, Number> table_weight;
-    @FXML private TableColumn<PrintedBook, String> table_mainHero;
     @FXML private TableColumn<PrintedBook, String> table_read;
     
 	@Override
@@ -59,7 +58,6 @@ public class PrintedLibraryController implements Initializable {
 		table_pages.setCellValueFactory(param -> new ReadOnlyIntegerWrapper(param.getValue().getPages()));
 		table_published.setCellValueFactory(param -> new ReadOnlyIntegerWrapper(param.getValue().getPublished()));
 		table_weight.setCellValueFactory(param -> new ReadOnlyIntegerWrapper(param.getValue().getWeight()));
-		table_mainHero.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getMainHero()));
 		table_read.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getReadStatus().toString()));
 	}
 	
