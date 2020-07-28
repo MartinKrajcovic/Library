@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import connections.ImageDownloader;
+import connections.ImageDownload;
 
 public class PrintedBook extends Book implements Comparable<PrintedBook> {
 	
@@ -63,7 +63,7 @@ public class PrintedBook extends Book implements Comparable<PrintedBook> {
 	public void loadImage(File imagePath) {
 		if (imagePath != null) {
 			try {
-				image = ImageIO.read(ImageDownloader.copyImage(imagePath.toPath()));
+				image = ImageIO.read(ImageDownload.copyImage(imagePath.toPath()));
 			} catch (IOException e) {
 				// invalid path
 			}

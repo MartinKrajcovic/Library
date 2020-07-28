@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ForkJoinPool;
 
 import com.sun.glass.ui.Window;
 
@@ -15,8 +16,7 @@ import books.Language;
 import books.PrintedBook;
 import books.PrintedFormat;
 import books.ReadStatus;
-import connections.ImageDownloader;
-import exceptions.RefusedConnectionException;
+import connections.ImageDownload;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -110,7 +110,7 @@ public class PrintedBookController implements Initializable {
 	@FXML
 	private void processDroppedImageLocation(DragEvent event) {
 		String path = event.getDragboard().getFiles().get(0).getAbsolutePath();
-		if (ImageDownloader.checkImageSuffix(path.trim()))
+		if (ImageDownload.checkImageSuffix(path.trim()))
 			imageLocationField.setText(path);
 	}
 	
@@ -120,10 +120,11 @@ public class PrintedBookController implements Initializable {
 			Alerts.warningAlert("Author, title and genre must be specified!");
 			return;
 		}
+		
 		myBook = new PrintedBook(authorField.getText(), 
 				titleField.getText(), genreField.getText(), publisherField.getText(), 
 				languageBox.getValue(), bindingBox.getValue(), formatBox.getValue());
-		
+	
 		myBook.setPages(parseInt(pagesField.getText().trim()));
 		myBook.setChapters(parseInt(chaptersField.getText().trim()));
 		myBook.setPublished(parseInt(publishedField.getText().trim()));
@@ -138,19 +139,18 @@ public class PrintedBookController implements Initializable {
 							 
 		plotArea.setText(myBook.toString());
 		
-		// kvoli tomu bordelu dole treba prekopat triedu ImageDownloader na vlakno
-		String location = imageLocationField.getText().trim(); 					 
-		Thread t = new Thread(() -> {	// tuto zvazit nejaky wrapper lambda     
-			try {															     
-				ImageDownloader downloader = new ImageDownloader(location);
-				myBook.loadImage(downloader.download());
-			} catch (MalformedURLException urlE) {								 
-				myBook.loadImage(new File(location));							 
-			} catch (RefusedConnectionException refused) {
-				refused.getMessage();
+		String location = imageLocationField.getText().trim();
+		Thread t = new Thread(() -> {
+			try {
+				ForkJoinPool pool = new ForkJoinPool();
+				ImageDownload task = new ImageDownload(new URL(location), 0);
+				pool.invoke(task);
+				myBook.loadImage(task.getFile());
+			} catch (MalformedURLException e) {
+				myBook.loadImage(new File(location));
 			}
-			bookImage.setImage(SwingFXUtils.toFXImage(myBook.getImage(), null)); 
-		});																		 
+			bookImage.setImage(SwingFXUtils.toFXImage(myBook.getImage(), null));
+		});
 		t.start();
 		Alerts.infoAlert("A new book has been created!\nNow you can add it to your library..");
 	}																			 
@@ -220,3 +220,4 @@ public class PrintedBookController implements Initializable {
 	}
 	
 }
+
