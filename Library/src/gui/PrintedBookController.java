@@ -146,7 +146,7 @@ public class PrintedBookController implements Initializable {
 				ImageDownload task = new ImageDownload(new URL(location), 0);
 				pool.invoke(task);
 				myBook.loadImage(task.getFile());
-			} catch (MalformedURLException e) {
+			} catch (Exception e) {
 				myBook.loadImage(new File(location));
 			}
 			bookImage.setImage(SwingFXUtils.toFXImage(myBook.getImage(), null));
