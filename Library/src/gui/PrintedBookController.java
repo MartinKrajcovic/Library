@@ -142,7 +142,7 @@ public class PrintedBookController implements Initializable {
 		String location = imageLocationField.getText().trim();
 		Thread t = new Thread(() -> {
 			try {
-				ForkJoinPool pool = new ForkJoinPool();
+				ForkJoinPool pool = new ForkJoinPool(4);
 				ImageDownload task = new ImageDownload(new URL(location), 0);
 				pool.invoke(task);
 				myBook.loadImage(task.getFile());
