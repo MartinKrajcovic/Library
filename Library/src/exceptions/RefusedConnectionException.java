@@ -4,7 +4,7 @@ package exceptions;
 public class RefusedConnectionException extends Exception {
 	
 	public RefusedConnectionException() {
-		super();;
+		super();
 	}
 	
 	public RefusedConnectionException(String message) {
