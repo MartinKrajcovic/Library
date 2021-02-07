@@ -2,7 +2,7 @@ package exceptions;
 
 @SuppressWarnings("serial")
 public class RefusedConnectionException extends Exception {
-	
+	// komentar
 	public RefusedConnectionException() {
 		super();;
 	}
