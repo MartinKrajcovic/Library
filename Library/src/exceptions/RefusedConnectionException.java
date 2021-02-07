@@ -4,6 +4,7 @@ package exceptions;
 public class RefusedConnectionException extends Exception {
 	// komentar
 	public RefusedConnectionException() {
+		
 		super();;
 	}
 	
